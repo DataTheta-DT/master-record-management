@@ -1,4 +1,4 @@
-# Healthcare Identity Resolution (MPI / EMPI)
+# Master Record Management (MPI)
 
 A reusable Databricks framework that finds patient records belonging to the same person across EHR, lab (LIS), radiology (RIS), pharmacy and billing systems, and builds one master patient record for each person.
 
