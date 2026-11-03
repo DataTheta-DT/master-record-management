@@ -1,0 +1,263 @@
+{
+  "blocking": {
+    "max_block_size": 200,
+    "allow_same_source_pairs": true,
+    "rules": [
+      {
+        "name": "dob_last_soundex",
+        "columns": [
+          "dob",
+          "last_soundex"
+        ]
+      },
+      {
+        "name": "names_birth_year",
+        "columns": [
+          "first_soundex",
+          "last_soundex",
+          "dob_year"
+        ]
+      },
+      {
+        "name": "phone",
+        "columns": [
+          "phone_norm"
+        ]
+      },
+      {
+        "name": "strong_id",
+        "columns": [
+          "aadhaar_hash"
+        ]
+      },
+      {
+        "name": "dob_initial_pincode",
+        "columns": [
+          "dob",
+          "first_initial",
+          "pincode"
+        ]
+      },
+      {
+        "name": "last_pincode_year",
+        "columns": [
+          "last_norm",
+          "pincode",
+          "dob_year"
+        ]
+      }
+    ]
+  },
+  "comparison": {
+    "fuzzy_similarity": 0.8,
+    "address_exact_similarity": 0.92,
+    "address_fuzzy_similarity": 0.75
+  },
+  "nickname_groups": [
+    [
+      "RAJESH",
+      "RAJ",
+      "RAJU"
+    ],
+    [
+      "VENKATESH",
+      "VENKAT",
+      "VENKY"
+    ],
+    [
+      "SURESH",
+      "SURI"
+    ],
+    [
+      "RAMESH",
+      "RAMU"
+    ],
+    [
+      "KRISHNAN",
+      "KRISH",
+      "KICHA"
+    ],
+    [
+      "SUBRAMANIAN",
+      "SUBBU",
+      "SUBRA"
+    ],
+    [
+      "MOHAMMED",
+      "MOHAMED",
+      "MUHAMMAD",
+      "MD"
+    ],
+    [
+      "LAKSHMI",
+      "LAXMI"
+    ],
+    [
+      "PRIYA",
+      "PRIYANKA"
+    ],
+    [
+      "DEEPAK",
+      "DEEPU"
+    ],
+    [
+      "ANAND",
+      "ANANDH"
+    ],
+    [
+      "KARTHIK",
+      "KARTHI",
+      "KARTIK"
+    ],
+    [
+      "SATHISH",
+      "SATISH"
+    ],
+    [
+      "MANIKANDAN",
+      "MANI"
+    ]
+  ],
+  "fields": {
+    "first_name": {
+      "exact": {
+        "m": 0.8,
+        "u": 0.006
+      },
+      "nickname": {
+        "m": 0.05,
+        "u": 0.003
+      },
+      "initial": {
+        "m": 0.03,
+        "u": 0.02
+      },
+      "fuzzy": {
+        "m": 0.07,
+        "u": 0.012
+      },
+      "swapped": {
+        "m": 0.005,
+        "u": 0.0002
+      },
+      "disagree": {
+        "m": 0.045,
+        "u": 0.9568
+      }
+    },
+    "last_name": {
+      "exact": {
+        "m": 0.88,
+        "u": 0.015
+      },
+      "fuzzy": {
+        "m": 0.06,
+        "u": 0.015
+      },
+      "swapped": {
+        "m": 0.005,
+        "u": 0.0002
+      },
+      "disagree": {
+        "m": 0.055,
+        "u": 0.9698
+      }
+    },
+    "dob": {
+      "exact": {
+        "m": 0.9,
+        "u": 6e-05
+      },
+      "transposed": {
+        "m": 0.02,
+        "u": 5e-05
+      },
+      "close": {
+        "m": 0.03,
+        "u": 0.0048
+      },
+      "disagree": {
+        "m": 0.05,
+        "u": 0.99509
+      }
+    },
+    "gender": {
+      "agree": {
+        "m": 0.985,
+        "u": 0.5
+      },
+      "disagree": {
+        "m": 0.015,
+        "u": 0.5
+      }
+    },
+    "address": {
+      "line_exact": {
+        "m": 0.45,
+        "u": 0.01
+      },
+      "line_fuzzy": {
+        "m": 0.15,
+        "u": 0.01
+      },
+      "area_match": {
+        "m": 0.15,
+        "u": 0.05
+      },
+      "disagree": {
+        "m": 0.25,
+        "u": 0.93
+      }
+    },
+    "phone": {
+      "exact": {
+        "m": 0.6,
+        "u": 0.004
+      },
+      "disagree": {
+        "m": 0.4,
+        "u": 0.996
+      }
+    }
+  },
+  "deterministic": {
+    "strong_identifiers": [
+      {
+        "name": "aadhaar",
+        "hash_column": "aadhaar_hash"
+      }
+    ],
+    "score_floor": 0.9,
+    "waivable_flags": [
+      "DOB_NOT_EXACT",
+      "DOB_MISSING",
+      "LOW_EVIDENCE"
+    ]
+  },
+  "thresholds": {
+    "high": 0.8,
+    "low": 0.55
+  },
+  "safety_rules": {
+    "require_dob_for_auto": true,
+    "require_exact_dob_for_auto": true,
+    "block_on_gender_conflict": true,
+    "block_on_strong_id_conflict": true,
+    "twin_guard": true,
+    "min_evidence_fields": 3,
+    "strong_id_conflict_action": "cap_medium",
+    "twin_guard_fuzzy_first_name": true
+  },
+  "cluster_guard": {
+    "max_cluster_size": 10,
+    "conflict_flags": [
+      "GENDER_CONFLICT",
+      "STRONG_ID_CONFLICT",
+      "DOB_CONFLICT",
+      "TWIN_GUARD"
+    ]
+  },
+  "clustering": {
+    "max_driver_edges": 2000000
+  }
+}

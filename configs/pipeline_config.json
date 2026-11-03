@@ -1,0 +1,72 @@
+{
+  "project": {
+    "name": "healthcare_identity_resolution",
+    "version": "0.1.0",
+    "client": "demo"
+  },
+  "storage": {
+    "catalog": "workspace",
+    "schema": "healthcare_identity_resolution",
+    "format": "delta"
+  },
+  "tables": {
+    "bronze": "bronze_patient_records",
+    "silver": "silver_patient_std",
+    "pairs": "match_pairs",
+    "pairs_history": "match_pairs_history",
+    "pair_decisions": "pair_decisions",
+    "master": "mpi_master",
+    "xref": "mpi_source_xref",
+    "golden_lineage": "mpi_golden_lineage",
+    "review_tasks": "review_tasks",
+    "review_decisions": "review_decisions",
+    "review_escalations": "review_escalations",
+    "review_resolutions": "review_resolutions",
+    "audit": "audit_log",
+    "run_log": "pipeline_run_log",
+    "config_versions": "config_versions",
+    "unified": "unified_patient_records"
+  },
+  "synthetic": {
+    "seed": 42,
+    "n_persons": 1500,
+    "system_coverage": {
+      "EHR": 0.85,
+      "LIS": 0.6,
+      "RIS": 0.35,
+      "PHARMACY": 0.55,
+      "BILLING": 0.7
+    },
+    "duplicate_within_system_rate": 0.06,
+    "name_typo": 0.12,
+    "nickname": 0.08,
+    "initial_only": 0.04,
+    "name_swap": 0.02,
+    "dob_transpose": 0.02,
+    "dob_typo": 0.02,
+    "dob_missing": {
+      "EHR": 0.0,
+      "LIS": 0.02,
+      "RIS": 0.02,
+      "PHARMACY": 0.2,
+      "BILLING": 0.03
+    },
+    "phone_missing": 0.25,
+    "address_variation": 0.3,
+    "address_missing": 0.1,
+    "gender_missing": 0.05,
+    "gender_error": 0.01,
+    "aadhaar_presence": {
+      "EHR": 0.6,
+      "LIS": 0.0,
+      "RIS": 0.0,
+      "PHARMACY": 0.05,
+      "BILLING": 0.4
+    },
+    "aadhaar_typo_rate": 0.02,
+    "aadhaar_shared_error_rate": 0.004,
+    "twin_rate": 0.02,
+    "family_shared_address_rate": 0.1,
+    "same_name_different_person_rate": 0.02
+  }
+}

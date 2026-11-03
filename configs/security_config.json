@@ -1,0 +1,23 @@
+{
+  "strong_identifiers": {
+    "aadhaar": {
+      "enabled": true,
+      "legal_basis_confirmed": true,
+      "legal_basis_note": "Synthetic data only. A real client must confirm the legal basis before enabling.",
+      "store_raw": false
+    }
+  },
+  "salt": {
+    "env_var": "HIR_ID_SALT",
+    "secret_scope": null,
+    "secret_key": null,
+    "allow_dev_default": true,
+    "dev_default": "dev-only-salt-change-me"
+  },
+  "role_visibility": {
+    "reviewer": {"first_name": "full", "last_name": "full", "dob": "full", "gender": "full", "address": "full", "phone": "last4", "aadhaar": "hash_match_only"},
+    "senior_reviewer": {"first_name": "full", "last_name": "full", "dob": "full", "gender": "full", "address": "full", "phone": "full", "aadhaar": "last4"},
+    "admin": {"first_name": "full", "last_name": "full", "dob": "full", "gender": "full", "address": "full", "phone": "full", "aadhaar": "last4"},
+    "analyst": {"first_name": "initial", "last_name": "initial", "dob": "year", "gender": "full", "address": "pincode", "phone": "hidden", "aadhaar": "hidden"}
+  }
+}

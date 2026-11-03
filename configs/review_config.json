@@ -1,0 +1,109 @@
+{
+  "policies": {
+    "single": {
+      "required_reviewers": 1,
+      "approvals_needed": 1,
+      "early_resolution": true,
+      "escalate_on_split_vote": false
+    },
+    "two_of_three": {
+      "required_reviewers": 3,
+      "approvals_needed": 2,
+      "early_resolution": true,
+      "escalate_on_split_vote": false
+    },
+    "two_of_three_strict": {
+      "required_reviewers": 3,
+      "approvals_needed": 2,
+      "early_resolution": false,
+      "escalate_on_split_vote": true
+    },
+    "unanimous": {
+      "required_reviewers": 3,
+      "approvals_needed": 3,
+      "early_resolution": false,
+      "escalate_on_split_vote": true
+    }
+  },
+  "policy_selection": [
+    {
+      "policy": "two_of_three_strict",
+      "when": {
+        "flags_any": [
+          "STRONG_ID_CONFLICT",
+          "TWIN_GUARD",
+          "DOB_CONFLICT",
+          "GENDER_CONFLICT",
+          "CLUSTER_CONFLICT",
+          "DO_NOT_MERGE_CONFLICT"
+        ]
+      }
+    },
+    {
+      "policy": "two_of_three",
+      "when": {}
+    }
+  ],
+  "task_types": {
+    "PAIR_REVIEW": {
+      "allowed_decisions": [
+        "APPROVE",
+        "REJECT",
+        "UNSURE"
+      ]
+    },
+    "MERGE_AUDIT": {
+      "allowed_decisions": [
+        "APPROVE",
+        "SPLIT",
+        "UNSURE"
+      ]
+    }
+  },
+  "comment_required_for": [
+    "REJECT",
+    "SPLIT",
+    "UNSURE"
+  ],
+  "escalation": {
+    "resolver_roles": [
+      "senior_reviewer",
+      "admin"
+    ],
+    "allowed_decisions": [
+      "APPROVE",
+      "REJECT",
+      "SPLIT"
+    ],
+    "comment_required": true
+  },
+  "audit_sampling": {
+    "auto_merge_sample_rate": 0.05
+  },
+  "reviewers": [
+    {
+      "id": "rev_anita",
+      "role": "reviewer"
+    },
+    {
+      "id": "rev_bala",
+      "role": "reviewer"
+    },
+    {
+      "id": "rev_charu",
+      "role": "reviewer"
+    },
+    {
+      "id": "rev_dev",
+      "role": "reviewer"
+    },
+    {
+      "id": "sen_meera",
+      "role": "senior_reviewer"
+    },
+    {
+      "id": "admin_ops",
+      "role": "admin"
+    }
+  ]
+}

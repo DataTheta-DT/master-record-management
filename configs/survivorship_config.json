@@ -1,0 +1,13 @@
+{
+  "source_priority": ["EHR", "BILLING", "PHARMACY", "RIS", "LIS"],
+  "fields": [
+    {"name": "first_name", "columns": ["first_name_norm"], "strategies": ["most_frequent", "source_priority", "most_recent"]},
+    {"name": "middle_name", "columns": ["middle_name_norm"], "strategies": ["most_complete", "source_priority"]},
+    {"name": "last_name", "columns": ["last_name_norm"], "strategies": ["most_frequent", "source_priority", "most_recent"]},
+    {"name": "dob", "columns": ["dob"], "strategies": ["most_frequent", "source_priority"]},
+    {"name": "gender", "columns": ["gender_norm"], "strategies": ["most_frequent", "source_priority"]},
+    {"name": "address", "columns": ["address_line_norm", "city_norm", "state_norm", "pincode"], "strategies": ["most_recent", "most_complete", "source_priority"]},
+    {"name": "phone", "columns": ["phone_norm"], "strategies": ["most_recent", "most_frequent"]},
+    {"name": "aadhaar", "columns": ["aadhaar_hash", "aadhaar_last4"], "strategies": ["most_frequent", "source_priority"]}
+  ]
+}
